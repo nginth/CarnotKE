@@ -1,0 +1,18 @@
+<config version="2">
+  <component name="params" type="bootstrapParams" validate="true">
+    <property name="forceBootstrapAdmin" value="false" type="BOOLEAN"/>
+    <property name="memoryMB" value="512" type="INT"/>
+    <property name="hostname" value="localhost" type="STRING"/>
+    <property name="storageNodeId" value="0" type="INT"/>
+    <property name="adminHttpPort" value="5031" type="INT"/>
+    <property name="numCPUs" value="1" type="INT"/>
+    <property name="hostingAdmin" value="false" type="BOOLEAN"/>
+    <property name="haPortRange" value="5033,5036" type="STRING"/>
+    <property name="registryPort" value="5030" type="INT"/>
+    <property name="softwareVersion" value="12.1.3.4.7" type="STRING"/>
+    <property name="capacity" value="1" type="INT"/>
+  </component>
+  <component name="mountPoints" type="bootstrapParams" validate="false">
+    <property name="/Users/nginther/dm/CarnotKE/jyhton/./F16.B3_db/store" value="" type="STRING"/>
+  </component>
+</config>
