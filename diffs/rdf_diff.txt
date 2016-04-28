@@ -1,0 +1,74 @@
+7,9c7,11
+< import oracle.rdf.kv.client.jena.DatasetGraphNoSql;
+< import oracle.rdf.kv.client.jena.OracleGraphNoSql;
+< import oracle.rdf.kv.client.jena.OracleNoSqlConnection;
+---
+> import com.hp.hpl.jena.rdf.model.*;
+> import com.hp.hpl.jena.graph.*; 
+> import com.hp.hpl.jena.ontology.*; 
+> import com.hp.hpl.jena.rdf.model.ModelFactory;
+> import oracle.rdf.kv.client.jena.*;
+16a19,20
+> import java.util.Iterator;
+> import java.io.PrintStream;
+87a92,144
+>     public void OracleNoSQLAddQuadInf(String graph, String subject, String predicate, String object, Boolean object_as_uri)
+>     {
+>         if (!graph.contains("http://")) graph = nameSpace + graph;
+>         if (!subject.contains("http://")) subject = nameSpace + subject;
+>         if (!predicate.contains("http://")) predicate = nameSpace + predicate;
+>         if (!object.contains("http://")) object = nameSpace + object;
+>         if (debug.equals("debug"))
+>             System.out.println("In addQuad, stmt is: " + graph + ", " + subject + ", " + predicate + ", " + object);
+>         
+>         //here we go
+>         PrintStream psOut = System.out;
+>         psOut.println("~~begin inferencing~~");
+>         Node graphNode = Node.createURI(graph);
+>         OracleGraphNoSql graphInf = new OracleNamedGraphNoSql(graphNode, connection);
+>         Model model = OracleModelNoSql.createOracleModelNoSql(graphNode, connection);
+>         
+>         OntModel base = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, model);
+>         Node sub = Node.createURI(subject);
+>         Node pred = Node.createURI(predicate);
+>         
+>         OntClass c = base.createClass(object);
+>         Individual indv = base.createIndividual(subject, c);
+>         OntModel om = 
+>               ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_RULE_INF,
+>                                                base);
+>         for (Iterator<Resource> i = indv.listRDFTypes(true); i.hasNext(); ) {
+>             System.out.println( indv.getURI() + " is asserted in class " + i.next() );
+>         }
+> 
+>         indv = om.getIndividual(subject);
+>         for (Iterator<Resource> i = indv.listRDFTypes(false); i.hasNext(); ) {
+>          System.out.println( indv.getURI() + " is inferred to be in class " + i.next() );
+>         }
+> 
+>         for (Iterator<Individual> i = om.listIndividuals(); i.hasNext(); ) {
+>             System.out.println("inferred individuals: " + i.next());
+>         }
+>         
+>         base.add(om);
+>         model.close();         
+>         
+>         // if (object_as_uri)
+>         //     datasetGraph.add(Node.createURI(graph), Node.createURI(subject), Node.createURI(predicate), Node.createURI(object));
+>         // else {
+>         //     if (object.contains("http://"))
+>         //         datasetGraph.add(Node.createURI(graph), Node.createURI(subject), Node.createURI(predicate), Node.createURI(object));
+>         //     else
+>         //         datasetGraph.add(Node.createURI(graph), Node.createURI(subject), Node.createURI(predicate), Node.createLiteral(object
+>         //                 .replaceAll(nameSpace, "")));
+>         // }
+>     }
+> 
+>     @Override
+89a147
+>         System.out.println("OracleNoSQLRunSPARQL: " + sparql);
+302c360
+< }
+\ No newline at end of file
+---
+> }

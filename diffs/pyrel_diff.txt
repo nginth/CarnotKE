@@ -1,0 +1,31 @@
+101a102
+>                 System.out.println("OracleRDFNoSQLDatabase: creating database");
+186c187
+<         TCPClient test = new TCPClient(address, 80, transport);     
+---
+>         TCPClient test = new TCPClient(address, 80, transport);		
+188,189c189,190
+<          database.executeStatement(stmt);
+<     }*/
+---
+> 	     database.executeStatement(stmt);
+> 	}*/
+195a197
+>         System.out.println("executing statement: " + stmt);
+201a204
+>         System.out.println("executing query: " + query);
+207a211,212
+> 
+>         System.out.printf("adding quad: graph: %s, subject: %s\n", graph, subject);
+210a216,221
+>     public void OracleNoSQLAddQuadInf(String graph, String subject, String predicate, String object, Boolean object_as_uri)
+>     {
+>         System.out.println("it's an inference!");
+>         database.OracleNoSQLAddQuadInf(graph, subject, predicate, object, object_as_uri);
+>     }
+> 
+345c356
+< }
+\ No newline at end of file
+---
+> }
