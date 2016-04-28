@@ -100,7 +100,6 @@ public class OracleRDFNoSQLDatabase extends DatabaseInterface {
         
         //here we go
         PrintStream psOut = System.out;
-        psOut.println("~~begin inferencing~~");
         Node graphNode = Node.createURI(graph);
         OracleGraphNoSql graphInf = new OracleNamedGraphNoSql(graphNode, connection);
         Model model = OracleModelNoSql.createOracleModelNoSql(graphNode, connection);

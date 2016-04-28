@@ -99,7 +99,7 @@ public class PyRelConnection extends PyObject {
             else {
                 database = new OracleRDFNoSQLDatabase(url, uname, pword, conn_type, debug);
                 connection_DB = "OracleNoSQL";
-                System.out.println("OracleRDFNoSQLDatabase: creating database");
+                System.out.println("OracleRDFNoSQLDatabase: creating database" );
             }
 
         }

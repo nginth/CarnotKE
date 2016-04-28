@@ -154,7 +154,7 @@ public class PyTuple extends PySequenceList implements List {
         if (ReLmode == "RDF") {
             System.out.println("Saw an RDF: " + ReLstmt);
             String[] s = ReLstmt.split(" ");
-            if(s[0].equals("inference"))
+            if(s[0].equals("inference") )
                 conn.OracleNoSQLAddQuadInf(s[1], s[2], s[3], s[4], false);
             else
                 conn.OracleNoSQLAddQuad(s[0], s[1], s[2], s[3], false);

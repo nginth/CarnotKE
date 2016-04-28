@@ -66,6 +66,6 @@ public abstract class DatabaseInterface {
 
     public void OracleNoSQLAddQuadInf(String graph, String subject, String predicate, String object, Boolean object_as_uri)
     {
-        System.out.println("\nThis is the top level OracleNoSQLAddQuadInf statement in DatabaseInterface and probably should be overridden if it's being called.\n");
+        System.out.println("\nThis is the top level OracleNoSQLAddQuadInf  statement in DatabaseInterface and probably should be overridden if it's being called.\n");
     }
 }
